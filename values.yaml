@@ -26,14 +26,15 @@ expose:
     commonName: ""
   ingress:
     hosts:
-      core: core.harbor.domain
-      notary: notary.harbor.domain
+      core: harbor.idp.dev.iotnxt.io
+      notary: notary.idp.dev.iotnxt.io
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
     # set to `ncp` if using the NCP (NSX-T Container Plugin) ingress controller
     controller: default
     annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
       ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -253,12 +254,12 @@ updateStrategy:
   type: RollingUpdate
 
 # debug, info, warning, error or fatal
-logLevel: info
+logLevel: debug
 
 # The initial password of Harbor admin. Change it from portal after launching Harbor
-harborAdminPassword: "Harbor12345"
+harborAdminPassword: "#a#very#secure#password#8#"
 # The secret key used for encryption. Must be a string of 16 chars.
-secretKey: "not-a-secure-key"
+secretKey: "not-a-secure-bee"
 
 # The proxy settings for updating clair vulnerabilities from the Internet and replicating
 # artifacts from/to the registries that cannot be reached directly
